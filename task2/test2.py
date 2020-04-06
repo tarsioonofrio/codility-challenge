@@ -2,10 +2,12 @@
 # print("this is a debug message")
 
 from collections import deque, OrderedDict
-from itertools import takewhile, count
 import math
+import random
+import time
 
 debug = False
+
 
 def solution_codility(N):
     s = deque()
@@ -16,11 +18,10 @@ def solution_codility(N):
     s = list(s)
     s.sort()
 
-    s = s[0:200]
     return s[N]
 
 
-def solution_home(N):
+def solution(N):
     d = OrderedDict()
     d[1] = None
     i2 = 1
@@ -71,21 +72,44 @@ def solution_home(N):
 
     return list(d.keys())[N]
 
-N = 2
-s = solution_home(N)
-print("*Solution for N = {} is {}".format(N, s))
-#s = solution_home(3)
-#print("*Solution for N = {} is {}".format(N, s))
+
+def main():
+    A = [0] * 10
+    A[0] = 1
+    A[1] = 2
+    A[2] = 3
+    A[3] = 4
+    A[4] = 6
+    A[5] = 8
+    A[6] = 9
+    A[7] = 12
+    A[8] = 16
+    A[9] = 18
+
+    print("Correctness test")
+    for n in A:
+        s = solution(n)
+        print("Solution for N = {} is {}".format(n, s))
+
+    for r in range(10):
+        n = random.randint(0, 200)
+        s = solution(n)
+        print("Solution for N = {} is {}".format(n, s))
+
+    print("Performance test")
+    n = int(10e3)
+    start = time.time()
+    for r in range(n):
+        n = random.randint(0, 200)
+        s = solution(n)
+
+    end = time.time()
+    total = end - start
+    print("Total time of {} executions: {}, Mean {}".format(n, total, total/n))
 
 
-A = [0] * 8
-A[0] = 1
-A[1] = 2
-A[2] = 3
-A[3] = 4
-A[4] = 6
-A[5] = 8
-A[6] = 9
-A[7] = 12
+if __name__ == "__main__":
+    main()
+
 
 

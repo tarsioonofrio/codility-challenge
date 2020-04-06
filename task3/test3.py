@@ -1,7 +1,18 @@
 import random
 
 
-def solution(indices, k=2):
+def solution_codility(indices, k=2):
+    """
+    I think i lost the solution i send to codility but they are simply and have one error
+    I need to unpack the train list
+
+    :param indices:
+    :param k:
+    :return:
+    """
+
+
+def solution_correct(indices, k=2):
     seed = 42
     sn = round(len(indices) / k)
     random.Random(seed).shuffle(indices)
@@ -20,11 +31,14 @@ def solution(indices, k=2):
     return kfolds
 
 
-indices = [1, 2, 3]
-k = 2
-#indices = list(range(10))
-s = solution(indices, k=2)
-print(s)
+
+def main():
+    indices = [1, 2, 3]
+    k = 2
+    s = solution(indices, k)
+    print("For indices {} with k {}, these are the kfolds: {}".format(indices, k, s))
 
 
-I = [[3], [2, 1], [2, 1], [3]]
+if __name__ == "__main__":
+    main()
+
